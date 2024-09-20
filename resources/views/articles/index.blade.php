@@ -63,9 +63,9 @@
                                             <x-link-primary-button class="ms-3" href="{{ route('articles.change', $article->id) }}">
                                                 Editar
                                             </x-link-primary-button>
-                                            <x-primary-button class="ms-3">
+                                            <x-link-primary-button class="ms-3" href="#" class="delete" data-url="{{ route('articles.delete', $article->id) }}">
                                                 Eliminar
-                                            </x-primary-button>
+                                            </x-link-primary-button>
                                         </td>
                                     </tr>
                                 @empty
@@ -84,4 +84,20 @@
             </div>
         </div>
     </div>
+    <script>
+        (() => {
+
+            const elements = document.querySelectorAll('.delete');
+            elements.forEach(item => {
+                item.addEventListener('click', function(){
+                     let url = this.getAttribute('data-url');
+                     if(confirm(`Está a apunto de eliminar un artículo, ésta operación es irreversible, ¿seguro desea continuar?`))
+                     {
+                         window.location.href = url;
+                     }
+                });
+            })
+
+        })();
+    </script>
 </x-app-layout>

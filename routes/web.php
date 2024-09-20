@@ -15,6 +15,7 @@ Route::prefix('articles')->middleware(['auth','verified'])->group(function(){
     Route::get( 'change/{id}', [ ArticlesController::class,'change'])->name('articles.change');
     Route::post('store-change/{id}',[ArticlesController::class,'storeChange'])->name('articles.store-change');
     Route::get( 'show/{id}', [ ArticlesController::class,'show'])->name('articles.show');
+    Route::get('delete/{id}', [ArticlesController::class,'delete'])->name('articles.delete');
 });
 
 Route::middleware('auth')->group(function () {

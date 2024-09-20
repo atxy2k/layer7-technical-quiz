@@ -56,4 +56,12 @@ class ArticlesController extends Controller
         return redirect()->back()->withInput($request->all())->withErrors($service->messages);
     }
 
+    public function delete(int $id, ArticlesService $service)
+    {
+        $article = Article::find($id);
+        if(is_null($article)) return redirect()->route('dashboard');
+        $service->delete($article->id);
+        return redirect()->route('dashboard');
+    }
+
 }
