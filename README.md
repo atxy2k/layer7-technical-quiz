@@ -31,6 +31,8 @@ sail artisan key:generate
 ```
 sail artisan migrate
 ```
+En éste punto ya se puede acceder a [http://localhost](http://localhost/login)
+
 - Una vez levantado los contenedores y ejecutado las migraciones se pueden correr las pruebas unitarias con (asegurarse de que exista la base de datos llamada testing antes)
 
 ```
