@@ -51,7 +51,7 @@
                                             {{ $article->amount }}
                                         </td>
                                         <td class="px-6 py-4">
-                                            {{$article->price}}
+                                            ${{number_format($article->price, 2)}}
                                         </td>
                                         <td class="px-6 py-4">
                                             {{$article->user->name}}
@@ -60,9 +60,9 @@
                                             <x-link-primary-button class="ms-3" href="{{ route('articles.show', $article->id) }}" >
                                                 Ver
                                             </x-link-primary-button>
-                                            <x-primary-button class="ms-3">
+                                            <x-link-primary-button class="ms-3" href="{{ route('articles.change', $article->id) }}">
                                                 Editar
-                                            </x-primary-button>
+                                            </x-link-primary-button>
                                             <x-primary-button class="ms-3">
                                                 Eliminar
                                             </x-primary-button>

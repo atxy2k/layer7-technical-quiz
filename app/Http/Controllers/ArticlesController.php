@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests\Articles\AddArticleRequest;
+use App\Http\Requests\Articles\ChangeArticleRequest;
 use App\Models\Article;
 use App\Services\ArticlesService;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +36,24 @@ class ArticlesController extends Controller
         $article = Article::find($id);
         if(is_null($article)) return redirect()->route('dashboard');
         return view('articles.show', compact('article'));
+    }
+
+    public function change(int $id)
+    {
+        $article = Article::find($id);
+        if(is_null($article)) return redirect()->route('dashboard');
+        return view('articles.change', compact('article'));
+    }
+
+    public function storeChange(int $id, ChangeArticleRequest $request, ArticlesService $service)
+    {
+        $article = Article::find($id);
+        if(is_null($article)) return redirect()->route('dashboard');
+        if($service->change($id, $request->all()))
+        {
+            return redirect()->route('dashboard');
+        }
+        return redirect()->back()->withInput($request->all())->withErrors($service->messages);
     }
 
 }
